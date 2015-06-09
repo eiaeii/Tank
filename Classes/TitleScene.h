@@ -9,6 +9,9 @@ public:
 
 	virtual bool init();
 
+	void menuStartGameCallback(cocos2d::Ref* pSender);
+	void menuCloseCallback(cocos2d::Ref* pSender);
+
 	CREATE_FUNC(Title);
 };
 
