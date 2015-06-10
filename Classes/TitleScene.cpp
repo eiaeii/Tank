@@ -1,6 +1,7 @@
 #include "TitleScene.h"
 #include "Resource.h"
 #include "VisibleRect.h"
+#include "GameScene.h"
 
 USING_NS_CC;
 
@@ -46,7 +47,8 @@ bool Title::init()
 
 void Title::menuStartGameCallback(cocos2d::Ref* pSender)
 {
-
+	auto scene = GameScene::createScene();
+	Director::getInstance()->replaceScene(scene);
 }
 
 void Title::menuCloseCallback(cocos2d::Ref* pSender)
