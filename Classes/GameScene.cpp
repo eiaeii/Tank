@@ -21,6 +21,8 @@ bool GameScene::init()
 	auto level = TMXTiledMap::create(Map_Level1);
 	auto scale = VisibleRect::getVisibleRect().size.height / level->getContentSize().height;
 	level->setScale(scale);
+	auto mapSize = level->getContentSize();
+	level->setPosition((VisibleRect::getVisibleRect().size.width - mapSize.width) / 2, 0);
 	this->addChild(level);
 	return true;
 }
