@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" nextobjectid="1">
  <tileset firstgid="1" name="tile" tilewidth="8" tileheight="8">
-  <image source="../proj.win32/Debug.win32/tile.png" width="224" height="32"/>
+  <image source="tile.png" width="224" height="32"/>
  </tileset>
- <layer name="块层 1" width="64" height="64">
+ <layer name="background" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztmDdSBDEQRRfPBTAJsJgLYBI8F2AhwXMBzP1jfjJJ11DS9LS6vnr1ql7Q4zQT/JZGk0mj0WjwswAX4RJcDjheih24C/fgNOB4Kc7hBbyEVwHHS/EEn+ELfA04XoqW/2F5HPv+ted/7PvXnv+x7197/se+f8548hrLWsKYf3mNZS1hzL+8xrKWMOZfXmNZSxjz7/ksxvx7Posx/57PYsy/57Na/lv+W/7nN/81jPkfbHsJ3rDtJXjDtpfgDVMWU5T8p0/Vmj5h3VtK/tOnak2fsO4tJf/pU7WmT1j3lpL/9Kla0ydYe4vXnM+6tvCa81nXFl5zPuvawiuXteffY33RHdP2Cs19ubn0WF90x7S9QnNfbi491hfdMW2v0NyXm0uP9UV3TNsrNPexzssaSua/BkrmvwZK5r8GIn2Lhki9TEOkXqYhJ/8rcBWuwXWC2pKc/O/DA3gIjwhqS3Lyfw1v4C28I6gtycn/G3yHH/CToLYk0lpGw7zP/43GGIbuWUVj6J5VNIbuWUVj6J5VNGS+N+Am3ILbPeejIfN9DE/gKTzrOR8Nme97OIMP8LHnfDRkvr/gN/yBvz3nvfgDBHWzUQ==
+   eJztm0duwzAQReUkTnKBlI0TpVwgZeP0C6RsnH6BlPuv8w2EgDAQ6SE1HI4hfeBDoDgkpcVjGdnjqqrW4fH/dQPe7FH5AD5sXI/g4x6Vr+Gbqn9y7/0Gvxd+lhJy7+04WAaN4BV4FV7r2BflP/d4EprAe/A+XHfsi8O/5HgSmsIX8CV81bEvDv+S40loBj/DL/Brx744/EuOJ6GB/zgeQ8/fB/5Dz98H/kPP3wf+Q88vxf+IxNE2vjoa13aPyiL/ExJH2/jqaFzbPSqL/E9JHG3jq6NxbfeoLPI/I3G0ja+OxrXdo7LIP1cSfVnknyuJvizyz5VEXxb550qir4H/gf+B//7yLzkmh39JWcslaOf/reUStPP/1nIJ2vl/a7mEGP7nvC46q7tr88zvi+HmCLjzREqbGP7ravFZ3V3rRp0vhpsjqJnvktImhv85r4vO6u7aPPP7Yrg5Au48kdImhv85r4vO6u7aPPP7Yrg5Au48kdJGY/3XWvNz858qrTU/N/+p0lrzc/OfKq01f9n5D+0HpMp0TxLLf8ocw+UytB+QKtM9SSz/KXMMl8vQfkCqTPcksfynzDFcLkP7Aaky3ZPE8p8yx1g78zdlif8SssR/CVniv4Q0+LcsDf4tS4N/y8rBv5Xf9LtySDn4t/KbflcOKQf/rq9b+M5AOaQc/Lu+PuBPA+WQNNZ/yxrW/+H/P8P/f/S+/8XmrHJL+/t/bM4qt7T5j81Z5ZY2/7E5q9wqzf8WvA3vwLst9blVmv8T+BQ+g89b6nOL8q99NruHH+BH+KnA+JR/7bPZF/wN/8C/BcZ37/0H7xjstQ==
   </data>
  </layer>
 </map>
