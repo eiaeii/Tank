@@ -20,7 +20,7 @@ bool Title::init()
 	{
 		return false;
 	}
-
+	preloadResources();
 	auto city = Sprite::create(Img_BattleCity);
 	city->setPosition(VisibleRect::center());
 	this->addChild(city);
@@ -58,4 +58,9 @@ void Title::menuCloseCallback(cocos2d::Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	exit(0);
 #endif
+}
+
+void Title::preloadResources()
+{
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("images.plist");
 }

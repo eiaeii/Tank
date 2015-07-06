@@ -11,6 +11,7 @@ public:
 
 	void menuStartGameCallback(cocos2d::Ref* pSender);
 	void menuCloseCallback(cocos2d::Ref* pSender);
+	void preloadResources();
 
 	CREATE_FUNC(Title);
 };

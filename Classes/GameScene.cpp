@@ -2,7 +2,26 @@
 #include "Resource.h"
 #include "VisibleRect.h"
 #include "Joystick.h"
+#include "MapLayer.h"
 USING_NS_CC;
+
+
+bool GameScene::init()
+{
+	if (!LayerColor::initWithColor(Color4B(111, 111, 111, 255)))
+	{
+		return false;
+	}
+
+	auto map = MapLayer::createScene();
+	this->addChild(map);
+
+	auto pJsSprite = Sprite::create("cen.png");
+	auto pJsBg = Sprite::create("control_bg.png");
+	auto pJoystick = Joystick::createJoystick(Vec2(VisibleRect::getVisibleRect().size.width - 100, VisibleRect::center().y), 70, pJsSprite, pJsBg, false);
+	this->addChild(pJoystick);
+	return true;
+}
 
 cocos2d::Scene* GameScene::createScene()
 {
@@ -10,26 +29,4 @@ cocos2d::Scene* GameScene::createScene()
 	auto layer = GameScene::create();
 	scene->addChild(layer);
 	return scene;
-}
-
-bool GameScene::init()
-{
-	if (!Layer::init())
-	{
-		return false;
-	}
-
-	auto level = TMXTiledMap::create(Map_Level1);
-	auto scale = VisibleRect::getVisibleRect().size.height / level->getContentSize().height;
-	level->setScale(scale);
-	auto mapSize = level->getContentSize();
-	level->setPosition((VisibleRect::getVisibleRect().size.width - mapSize.width) / 2, 0);
-	this->addChild(level);
-
-	auto pJsSprite = Sprite::create("cen.png");
-	auto pJsBg = Sprite::create("control_bg.png");
-	auto pJoystick = Joystick::createJoystick(Vec2(100, 250), 70, pJsSprite, pJsBg, false);
-
-	this->addChild(pJoystick);
-	return true;
 }
