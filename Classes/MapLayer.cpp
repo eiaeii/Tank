@@ -14,6 +14,7 @@ bool MapLayer::init()
 	auto scale = VisibleRect::getVisibleRect().size.height / level->getContentSize().height;
 	level->setScale(scale);
 	this->addChild(level);
+	this->setPosition((VisibleRect::getVisibleRect().size.width - this->getContentSize().width) / 2, 0);
 	return true;
 }
 

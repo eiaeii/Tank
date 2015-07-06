@@ -18,7 +18,7 @@ bool GameScene::init()
 
 	auto pJsSprite = Sprite::create("cen.png");
 	auto pJsBg = Sprite::create("control_bg.png");
-	auto pJoystick = Joystick::createJoystick(Vec2(VisibleRect::getVisibleRect().size.width - 100, VisibleRect::center().y), 70, pJsSprite, pJsBg, false);
+	auto pJoystick = Joystick::createJoystick(Vec2(100, VisibleRect::center().y), 70, pJsSprite, pJsBg, false);
 	this->addChild(pJoystick);
 	return true;
 }
