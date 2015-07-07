@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" nextobjectid="4">
  <tileset firstgid="1" name="tile" tilewidth="8" tileheight="8">
   <image source="tile.png" width="224" height="32"/>
  </tileset>
@@ -8,4 +8,7 @@
    eJztmEduxDAMRWfSL5CymcQpF0jZTPoFUjaTfoGU+6/zvTBgEKJFy7JAcfSAD0MWZcmLL1GcTAqFQkE/U2gFWoXWDM7nYwbtQwdQZXA+H3PoErqCrg3O52MBvUCv0JvB+XwU//fz49D15+7/oevP3f9D15+7/4euXzLflMTRMVwfjXO9o2j0/4zE0TFcH41zvaNo9P+cxNExXB+Nc72jaPT/gsTRMVwfjXO9o2j0f8pvafR/ym9p9H/Kb2n0f8pvFf8X/xf/L6//c5iTQ1stITXaagmp0VZLSI0mL/al9qvvrt4823d+LkZaI5DuE2PvLdXEf1dvnlWrj4uR1ggq4frG3ltqv/ru6s2zfefnYqQ1Auk+MfbeUvvVd1dvnu07PxcjrRFI9wmte0uqM19rbpHqzNeaW6Q687XmFql8mbv/u/KBWG0uJ4n9L22kvuzKB2K1uZxESsg4qS+78oFYbS4nkRIyTurLrnwgVpvLSaSEjNN6Locwpv9zYEz/58CY/s8BS/8SgqW9LARLe1kIEv+vQxvQJrSloB0Tif8PoSPoGDpR0I6JxP830C10B90raMdE4v936AP6hL4UtGNiKZcJYdnP/0JhCH1rVtboW7OyRt+alTX61qysQf29De1Au9Ceo98a1N+n0Bl0Dl04+q1B/f0APUJP0LOj3xrU39/QD/QL/Tn6U/EP20CwlQ==
   </data>
  </layer>
+ <objectgroup name="object">
+  <object id="2" name="player1" x="136" y="488" width="24" height="24"/>
+ </objectgroup>
 </map>

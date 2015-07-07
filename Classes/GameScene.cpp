@@ -3,6 +3,8 @@
 #include "VisibleRect.h"
 #include "Joystick.h"
 #include "MapLayer.h"
+#include "SimpleAudioEngine.h"
+#include "Resource.h"
 USING_NS_CC;
 
 
@@ -20,6 +22,7 @@ bool GameScene::init()
 	auto pJsBg = Sprite::create("control_bg.png");
 	auto pJoystick = Joystick::createJoystick(Vec2(100, VisibleRect::center().y), 70, pJsSprite, pJsBg, false);
 	this->addChild(pJoystick);
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(Music_Bg1);
 	return true;
 }
 

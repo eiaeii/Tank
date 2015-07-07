@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "VisibleRect.h"
 #include "GameScene.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -63,4 +64,5 @@ void Title::menuCloseCallback(cocos2d::Ref* pSender)
 void Title::preloadResources()
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("images.plist");
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic(Music_Bg1);
 }
