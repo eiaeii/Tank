@@ -15,6 +15,8 @@ bool MapLayer::init()
 	level->setScale(scale);
 	this->addChild(level);
 	this->setPosition((VisibleRect::getVisibleRect().size.width - this->getContentSize().width) / 2, 0);
+	m_pObjectsGroup = level->objectGroupNamed("objects");
+	
 	return true;
 }
 

@@ -18,5 +18,6 @@ class Player :
 public:
 	virtual bool init();
 	CREATE_FUNC(Player);
+	void setAction(PlayerAction objAction);
 };
 

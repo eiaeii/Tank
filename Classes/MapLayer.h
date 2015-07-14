@@ -7,5 +7,9 @@ public:
 	virtual bool init();
 	CREATE_FUNC(MapLayer);
 	static cocos2d::Scene* createScene();
+
+protected:
+	cocos2d::TMXObjectGroup* m_pObjectsGroup;
+	
 };
 
