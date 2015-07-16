@@ -1,5 +1,8 @@
 #pragma once
 #include "cocos2d.h"
+
+class Player;
+
 class MapLayer :
 	public cocos2d::LayerColor
 {
@@ -10,6 +13,7 @@ public:
 
 protected:
 	cocos2d::TMXObjectGroup* m_pObjectsGroup;
-	
+	Player* m_pPlayer;
+	float m_fScale;
 };
 

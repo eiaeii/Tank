@@ -1,6 +1,8 @@
 #include "MapLayer.h"
 #include "Resource.h"
 #include "VisibleRect.h"
+#include "Player.h"
+
 USING_NS_CC;
 
 bool MapLayer::init()
@@ -11,12 +13,18 @@ bool MapLayer::init()
 	}
 
 	auto level = TMXTiledMap::create(Map_Level1);
-	auto scale = VisibleRect::getVisibleRect().size.height / level->getContentSize().height;
-	level->setScale(scale);
+	m_fScale = VisibleRect::getVisibleRect().size.height / level->getContentSize().height;
+	level->setScale(m_fScale);
 	this->addChild(level);
 	this->setPosition((VisibleRect::getVisibleRect().size.width - this->getContentSize().width) / 2, 0);
-	m_pObjectsGroup = level->objectGroupNamed("objects");
-	
+	m_pObjectsGroup = level->getObjectGroup("objects");
+	auto playerPoint = m_pObjectsGroup->getObject("player1");
+	m_pPlayer = Player::create();
+	float playerX = playerPoint.at("x").asFloat();
+	float playerY = playerPoint.at("y").asFloat();
+	m_pPlayer->setScale(m_fScale);
+	m_pPlayer->setPosition(playerX * m_fScale, playerY * m_fScale);
+	this->addChild(m_pPlayer);
 	return true;
 }
 
