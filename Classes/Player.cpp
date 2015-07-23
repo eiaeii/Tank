@@ -14,13 +14,32 @@ bool Player::init()
 }
 
 
-void Player::setAction(PlayerAction objAction)
+void Player::setState(JoystickState state)
 {
-	switch (objAction)
+	if (m_state == state)
 	{
-	case pUp:
+		return;
+	}
+
+	switch (state)
+	{
+	case stateNothing:
+		break;
+	case stateUp:
+		this->initWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("p1tankU.PNG"));
+		break;
+	case stateDown:
+		this->initWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("p1tankD.PNG"));
+		break;
+	case stateLeft:
+		this->initWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("p1tankL.PNG"));
+		break;
+	case stateRight:
+		this->initWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("p1tankR.PNG"));
 		break;
 	default:
 		break;
 	}
+
+	m_state = state;
 }

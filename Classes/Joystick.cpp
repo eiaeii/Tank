@@ -1,6 +1,8 @@
 #include "Joystick.h"
 USING_NS_CC;
 
+JoystickState Joystick::m_jsState = stateNothing;
+
 bool Joystick::init()
 {
 	if (!Layer::init())
@@ -137,5 +139,34 @@ void Joystick::addEventTouch()
 void Joystick::update(float delta)
 {
 	m_pJsSprite->setPosition(m_pJsSprite->getPosition() + ((m_oCurrentPoint - m_pJsSprite->getPosition())*0.5));
+	static float deltaTimes = 0.0f;
+	deltaTimes += delta;
+	if (deltaTimes >= 0.2f)
+	{
+		deltaTimes = 0;
+		m_jsState = calculateRetation();
+	}
+}
 
+JoystickState Joystick::calculateRetation()
+{
+	auto direction = getDirection();
+	auto velocity = getVelocity();
+
+	auto angle = atan2(direction.x, direction.y) * 180 / 3.14;
+	if (angle == 0)
+	{
+		return stateNothing;
+	}
+	if (angle < -45 && angle >-135) return stateRight;
+	if (angle > 45 && angle <135) return stateLeft;
+	if (angle < 45 && angle > -45) return stateDown;
+	if (angle >135 || angle < -135) return stateUp;
+
+	return stateNothing;
+}
+
+JoystickState Joystick::getJoystickState()
+{
+	return m_jsState;
 }

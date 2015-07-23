@@ -14,14 +14,10 @@ bool GameScene::init()
 	{
 		return false;
 	}
+	
+	addMap();
+	addJoystick();
 
-	auto map = MapLayer::createScene();
-	this->addChild(map);
-
-	auto pJsSprite = Sprite::create("cen.png");
-	auto pJsBg = Sprite::create("control_bg.png");
-	auto pJoystick = Joystick::createJoystick(Vec2(100, VisibleRect::center().y), 70, pJsSprite, pJsBg, false);
-	this->addChild(pJoystick);
 	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(Music_Bg1);
 	return true;
 }
@@ -32,4 +28,18 @@ cocos2d::Scene* GameScene::createScene()
 	auto layer = GameScene::create();
 	scene->addChild(layer);
 	return scene;
+}
+
+void GameScene::addMap()
+{
+	auto map = MapLayer::createScene();
+	this->addChild(map);
+}
+
+void GameScene::addJoystick()
+{
+	auto pJsSprite = Sprite::create("cen.png");
+	auto pJsBg = Sprite::create("control_bg.png");
+	auto pJoystick = Joystick::createJoystick(Vec2(100, VisibleRect::center().y), 70, pJsSprite, pJsBg, false);
+	this->addChild(pJoystick);
 }

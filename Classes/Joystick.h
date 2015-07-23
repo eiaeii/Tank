@@ -1,5 +1,8 @@
 #pragma once
 #include "cocos2d.h"
+#include "Define.h"
+
+
 class Joystick :
 	public cocos2d::Layer
 {
@@ -15,7 +18,7 @@ public:
 
 	//关闭摇杆
 	void inActive();
-
+	static JoystickState getJoystickState();
 	
 private:
 	Joystick* initJoystick(cocos2d::Vec2 oPos, float fRadius, cocos2d::Sprite* pJsSprite, cocos2d::Sprite* pJsBg, bool bFollowRole);
@@ -26,6 +29,9 @@ private:
 	void TouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent);
 	void addEventTouch();
 	void  update(float delta);
+
+	//计算摇杆方向
+	JoystickState calculateRetation();
 private:
 
 	cocos2d::Point m_oCenterPoint;//摇杆中心  
@@ -39,5 +45,7 @@ private:
 	cocos2d::Sprite *m_pJsSprite;
 	cocos2d::Sprite *m_pJsBg;
 
-};
+	//摇杆方向
+	static JoystickState m_jsState;
 
+};

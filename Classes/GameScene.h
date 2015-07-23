@@ -8,5 +8,8 @@ public:
 
 	virtual bool init();
 
+	void addMap();
+
+	void addJoystick();
 	CREATE_FUNC(GameScene);
 };

@@ -1,16 +1,6 @@
 #pragma once
 #include "cocos2d.h"
-
-typedef enum
-{
-	pUp = 1,
-	pDown,
-	pLeft,
-	pRight,
-	pFire,
-	pStay,
-	pPause,
-}PlayerAction;
+#include "Define.h"
 
 class Player :
 	public cocos2d::Sprite
@@ -18,6 +8,9 @@ class Player :
 public:
 	virtual bool init();
 	CREATE_FUNC(Player);
-	void setAction(PlayerAction objAction);
+	void setState(JoystickState state);
+
+protected:
+	JoystickState m_state;
 };
 
