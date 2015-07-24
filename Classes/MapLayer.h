@@ -27,6 +27,7 @@ protected:
 	void MoveDown();
 	void MoveLeft();
 	void MoveRight();
+	bool canMove(cocos2d::Vec2 pos);
 
 	//×ª»»³ÉTiledMap×ø±ê
 	cocos2d::Vec2 positionToTiledPoint(cocos2d::Vec2 pos);

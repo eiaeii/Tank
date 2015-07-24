@@ -73,12 +73,15 @@ void MapLayer::MoveUp()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(0, m_playerSpeed);
 	auto pos2 =pos1 + delta;
-	auto tiledPoint = positionToTiledPoint(pos2);
 	if (pos2.y + m_pPlayer->getContentSize().height /2 > m_mapSize.height)
 	{
 		return;
 	}
-	m_pPlayer->setPosition(pos2);
+
+	if (canMove(pos2))
+	{
+		m_pPlayer->setPosition(pos2);
+	}
 }
 
 void MapLayer::MoveDown()
@@ -90,7 +93,11 @@ void MapLayer::MoveDown()
 	{
 		return;
 	}
-	m_pPlayer->setPosition(pos2);
+
+	if (canMove(pos2))
+	{
+		m_pPlayer->setPosition(pos2);
+	}
 }
 
 void MapLayer::MoveLeft()
@@ -102,7 +109,11 @@ void MapLayer::MoveLeft()
 	{
 		return;
 	}
-	m_pPlayer->setPosition(pos2);
+	
+	if (canMove(pos2))
+	{
+		m_pPlayer->setPosition(pos2);
+	}
 }
 
 void MapLayer::MoveRight()
@@ -114,7 +125,11 @@ void MapLayer::MoveRight()
 	{
 		return;
 	}
-	m_pPlayer->setPosition(pos2);
+	
+	if (canMove(pos2))
+	{
+		m_pPlayer->setPosition(pos2);
+	}
 }
 
 Vec2 MapLayer::positionToTiledPoint(Vec2 pos)
@@ -122,4 +137,16 @@ Vec2 MapLayer::positionToTiledPoint(Vec2 pos)
 	auto temp = pos / m_fScale;
 	auto temp2 = m_pMap->getTileSize();
 	return  Vec2(temp.x / temp2.width, m_pMap->getMapSize().height - 1 - temp.y / temp2.height);
+}
+
+bool MapLayer::canMove(cocos2d::Vec2 pos)
+{
+	auto tiledPoint = positionToTiledPoint(pos);
+	auto tiledID = m_pBackground->getTileGIDAt(tiledPoint);
+	auto rem = tiledID / 28;
+	if (rem > 0 && rem < 8)
+	{
+		return false;
+	}
+	return true;
 }
