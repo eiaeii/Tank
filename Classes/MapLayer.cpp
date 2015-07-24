@@ -14,13 +14,14 @@ bool MapLayer::init()
 		return false;
 	}
 
-	auto level = TMXTiledMap::create(Map_Level1);
-	m_fScale = VisibleRect::getVisibleRect().size.height / level->getContentSize().height;
-	level->setScale(m_fScale);
-	m_mapSize = level->getContentSize() * m_fScale;
-	this->addChild(level);
+	m_pMap = TMXTiledMap::create(Map_Level1);
+	m_pBackground = m_pMap->getLayer("background");
+	m_fScale = VisibleRect::getVisibleRect().size.height / m_pMap->getContentSize().height;
+	m_pMap->setScale(m_fScale);
+	m_mapSize = m_pMap->getContentSize() * m_fScale;
+	this->addChild(m_pMap);
 	this->setPosition((VisibleRect::getVisibleRect().size.width - this->getContentSize().width) / 2, 0);
-	m_pObjectsGroup = level->getObjectGroup("objects");
+	m_pObjectsGroup = m_pMap->getObjectGroup("objects");
 	auto playerPoint = m_pObjectsGroup->getObject("player1");
 	m_pPlayer = Player::create();
 	float playerX = playerPoint.at("x").asFloat();
@@ -71,8 +72,9 @@ void MapLayer::MoveUp()
 {
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(0, m_playerSpeed);
-	auto pos2 = pos1 + delta;
-	if (pos2.y > m_mapSize.height)
+	auto pos2 =pos1 + delta;
+	auto tiledPoint = positionToTiledPoint(pos2);
+	if (pos2.y + m_pPlayer->getContentSize().height /2 > m_mapSize.height)
 	{
 		return;
 	}
@@ -84,7 +86,7 @@ void MapLayer::MoveDown()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(0, -m_playerSpeed);
 	auto pos2 = pos1 + delta;
-	if (pos2.y < 0)
+	if (pos2.y - m_pPlayer->getContentSize().height / 2 < 0)
 	{
 		return;
 	}
@@ -96,7 +98,7 @@ void MapLayer::MoveLeft()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(-m_playerSpeed, 0);
 	auto pos2 = pos1 + delta;
-	if (pos2.x < 0)
+	if (pos2.x - m_pPlayer->getContentSize().width / 2 < 0)
 	{
 		return;
 	}
@@ -108,9 +110,16 @@ void MapLayer::MoveRight()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(m_playerSpeed, 0);
 	auto pos2 = pos1 + delta;
-	if (pos2.x > m_mapSize.width)
+	if (pos2.x + m_pPlayer->getContentSize().width / 2 > m_mapSize.width)
 	{
 		return;
 	}
 	m_pPlayer->setPosition(pos2);
+}
+
+Vec2 MapLayer::positionToTiledPoint(Vec2 pos)
+{
+	auto temp = pos / m_fScale;
+	auto temp2 = m_pMap->getTileSize();
+	return  Vec2(temp.x / temp2.width, m_pMap->getMapSize().height - 1 - temp.y / temp2.height);
 }

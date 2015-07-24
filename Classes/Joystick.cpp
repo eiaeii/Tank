@@ -133,7 +133,7 @@ void Joystick::addEventTouch()
 	listener->onTouchMoved = CC_CALLBACK_2(Joystick::TouchMoved, this);
 	listener->onTouchEnded = CC_CALLBACK_2(Joystick::TouchEnded, this);
 	listener->setSwallowTouches(true);//是否向下传递
-	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
 void Joystick::update(float delta)
