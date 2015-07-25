@@ -73,12 +73,13 @@ void MapLayer::MoveUp()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(0, m_playerSpeed);
 	auto pos2 =pos1 + delta;
-	if (pos2.y + m_pPlayer->getContentSize().height /2 > m_mapSize.height)
+	auto checkPoint = Vec2(pos2.x, pos2.y + m_pPlayer->getContentSize().height / 2);
+	if (checkPoint.y > m_mapSize.height)
 	{
 		return;
 	}
 
-	if (canMove(pos2))
+	if (canMove(checkPoint))
 	{
 		m_pPlayer->setPosition(pos2);
 	}
@@ -89,12 +90,13 @@ void MapLayer::MoveDown()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(0, -m_playerSpeed);
 	auto pos2 = pos1 + delta;
-	if (pos2.y - m_pPlayer->getContentSize().height / 2 < 0)
+	auto checkPoint = Vec2(pos2.x, pos2.y - m_pPlayer->getContentSize().height / 2);
+	if (checkPoint.y < 0)
 	{
 		return;
 	}
 
-	if (canMove(pos2))
+	if (canMove(checkPoint))
 	{
 		m_pPlayer->setPosition(pos2);
 	}
@@ -105,12 +107,13 @@ void MapLayer::MoveLeft()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(-m_playerSpeed, 0);
 	auto pos2 = pos1 + delta;
-	if (pos2.x - m_pPlayer->getContentSize().width / 2 < 0)
+	auto checkPoint = Vec2(pos2.x - m_pPlayer->getContentSize().width / 2, pos2.y);
+	if (checkPoint.x < 0)
 	{
 		return;
 	}
 	
-	if (canMove(pos2))
+	if (canMove(checkPoint))
 	{
 		m_pPlayer->setPosition(pos2);
 	}
@@ -121,12 +124,13 @@ void MapLayer::MoveRight()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(m_playerSpeed, 0);
 	auto pos2 = pos1 + delta;
-	if (pos2.x + m_pPlayer->getContentSize().width / 2 > m_mapSize.width)
+	auto checkPoint = Vec2(pos2.x + m_pPlayer->getContentSize().width / 2, pos2.y);
+	if (checkPoint.x > m_mapSize.width)
 	{
 		return;
 	}
 	
-	if (canMove(pos2))
+	if (canMove(checkPoint))
 	{
 		m_pPlayer->setPosition(pos2);
 	}
@@ -135,15 +139,18 @@ void MapLayer::MoveRight()
 Vec2 MapLayer::positionToTiledPoint(Vec2 pos)
 {
 	auto temp = pos / m_fScale;
-	auto temp2 = m_pMap->getTileSize();
-	return  Vec2(temp.x / temp2.width, m_pMap->getMapSize().height - 1 - temp.y / temp2.height);
+	return  Vec2((int)(temp.x / m_pMap->getTileSize().width), m_pMap->getMapSize().height - 1 - (int)(temp.y / m_pMap->getTileSize().height));
 }
 
 bool MapLayer::canMove(cocos2d::Vec2 pos)
 {
 	auto tiledPoint = positionToTiledPoint(pos);
+	tiledPoint.x = tiledPoint.x < 0 ? 0 : tiledPoint.x;
+	tiledPoint.x = tiledPoint.x >= m_pMap->getMapSize().width ? m_pMap->getMapSize().width - 1 : tiledPoint.x;
+	tiledPoint.y = tiledPoint.y < 0 ? 0 : tiledPoint.y;
+	tiledPoint.y = tiledPoint.y >= m_pMap->getMapSize().height ? m_pMap->getMapSize().height -1 : tiledPoint.y;
 	auto tiledID = m_pBackground->getTileGIDAt(tiledPoint);
-	auto rem = tiledID / 28;
+	auto rem = tiledID % 28;
 	if (rem > 0 && rem < 8)
 	{
 		return false;
