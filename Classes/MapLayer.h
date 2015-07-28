@@ -23,6 +23,8 @@ protected:
 	cocos2d::ValueMap m_valueMap;
 protected:
 	void  update(float delta);
+
+	//坦克移动相关
 	void MoveUp();
 	void MoveDown();
 	void MoveLeft();
