@@ -46,7 +46,7 @@ Scene* MapLayer::createScene()
 void  MapLayer::update(float delta)
 {
 	auto state = Joystick::getJoystickState();
-	m_pPlayer->setState(state);
+	m_pPlayer->setAction(state);
 	switch (state)
 	{
 	case stateNothing:
@@ -73,13 +73,13 @@ void MapLayer::MoveUp()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(0, m_playerSpeed);
 	auto pos2 =pos1 + delta;
-	auto checkPoint = Vec2(pos2.x, pos2.y + m_pPlayer->getContentSize().height / 2);
-	if (checkPoint.y > m_mapSize.height)
+	auto checkPoint1 = Vec2(pos2.x - m_pPlayer->getContentSize().width / 2, pos2.y + m_pPlayer->getContentSize().height / 2);
+	if (checkPoint1.y > m_mapSize.height)
 	{
 		return;
 	}
-
-	if (canMove(checkPoint))
+	auto checkPoint2 = Vec2(pos2.x + m_pPlayer->getContentSize().width / 2, pos2.y + m_pPlayer->getContentSize().height / 2);
+	if (canMove(checkPoint1) && canMove(checkPoint2))
 	{
 		m_pPlayer->setPosition(pos2);
 	}
@@ -90,13 +90,13 @@ void MapLayer::MoveDown()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(0, -m_playerSpeed);
 	auto pos2 = pos1 + delta;
-	auto checkPoint = Vec2(pos2.x, pos2.y - m_pPlayer->getContentSize().height / 2);
-	if (checkPoint.y < 0)
+	auto checkPoint1 = Vec2(pos2.x - m_pPlayer->getContentSize().width / 2, pos2.y - m_pPlayer->getContentSize().height / 2);
+	if (checkPoint1.y < 0)
 	{
 		return;
 	}
-
-	if (canMove(checkPoint))
+	auto checkPoint2 = Vec2(pos2.x - m_pPlayer->getContentSize().width / 2, pos2.y - m_pPlayer->getContentSize().height / 2);
+	if (canMove(checkPoint1) && canMove(checkPoint2))
 	{
 		m_pPlayer->setPosition(pos2);
 	}
@@ -107,13 +107,13 @@ void MapLayer::MoveLeft()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(-m_playerSpeed, 0);
 	auto pos2 = pos1 + delta;
-	auto checkPoint = Vec2(pos2.x - m_pPlayer->getContentSize().width / 2, pos2.y);
-	if (checkPoint.x < 0)
+	auto checkPoint1 = Vec2(pos2.x - m_pPlayer->getContentSize().width / 2, pos2.y + m_pPlayer->getContentSize().height / 2);
+	if (checkPoint1.x < 0)
 	{
 		return;
 	}
-	
-	if (canMove(checkPoint))
+	auto checkPoint2 = Vec2(pos2.x - m_pPlayer->getContentSize().width / 2, pos2.y - m_pPlayer->getContentSize().height / 2);
+	if (canMove(checkPoint1) && canMove(checkPoint2))
 	{
 		m_pPlayer->setPosition(pos2);
 	}
@@ -124,13 +124,13 @@ void MapLayer::MoveRight()
 	auto pos1 = m_pPlayer->getPosition();
 	auto delta = Vec2(m_playerSpeed, 0);
 	auto pos2 = pos1 + delta;
-	auto checkPoint = Vec2(pos2.x + m_pPlayer->getContentSize().width / 2, pos2.y);
-	if (checkPoint.x > m_mapSize.width)
+	auto checkPoint1 = Vec2(pos2.x + m_pPlayer->getContentSize().width / 2, pos2.y + m_pPlayer->getContentSize().height / 2);
+	if (checkPoint1.x > m_mapSize.width)
 	{
 		return;
 	}
-	
-	if (canMove(checkPoint))
+	auto checkPoint2 = Vec2(pos2.x + m_pPlayer->getContentSize().width / 2, pos2.y + m_pPlayer->getContentSize().height / 2);
+	if (canMove(checkPoint1) && canMove(checkPoint2))
 	{
 		m_pPlayer->setPosition(pos2);
 	}

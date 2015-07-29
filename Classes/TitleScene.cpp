@@ -63,6 +63,6 @@ void Title::menuCloseCallback(cocos2d::Ref* pSender)
 
 void Title::preloadResources()
 {
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("images.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("player1.plist");
 	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic(Music_Bg1);
 }

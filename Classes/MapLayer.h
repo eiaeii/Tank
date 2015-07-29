@@ -33,5 +33,6 @@ protected:
 
 	//×ª»»³ÉTiledMap×ø±ê
 	cocos2d::Vec2 positionToTiledPoint(cocos2d::Vec2 pos);
+
 };
 

@@ -8,9 +8,13 @@ class Player :
 public:
 	virtual bool init();
 	CREATE_FUNC(Player);
-	void setState(JoystickState state);
+	void setAction(JoystickState state);
 
 protected:
 	JoystickState m_state;
+
+protected:
+
+	void createAnimation();
 };
 
