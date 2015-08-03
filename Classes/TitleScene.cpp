@@ -22,7 +22,7 @@ bool Title::init()
 		return false;
 	}
 	preloadResources();
-	auto city = Sprite::create(Img_BattleCity);
+	auto city = Sprite::createWithSpriteFrameName(Img_BattleCity);
 	city->setPosition(VisibleRect::center());
 	this->addChild(city);
 
@@ -64,5 +64,6 @@ void Title::menuCloseCallback(cocos2d::Ref* pSender)
 void Title::preloadResources()
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("player1.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("images.plist");
 	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic(Music_Bg1);
 }

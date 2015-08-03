@@ -13,7 +13,7 @@ bool MapLayer::init()
 	{
 		return false;
 	}
-
+	this->setTag(MapLayer_Tag);
 	m_pMap = TMXTiledMap::create(Map_Level1);
 	m_pBackground = m_pMap->getLayer("background");
 	m_fScale = VisibleRect::getVisibleRect().size.height / m_pMap->getContentSize().height;
@@ -46,7 +46,7 @@ Scene* MapLayer::createScene()
 void  MapLayer::update(float delta)
 {
 	auto state = Joystick::getJoystickState();
-	m_pPlayer->setAction(state);
+	m_pPlayer->setMoveState(state);
 	switch (state)
 	{
 	case stateNothing:

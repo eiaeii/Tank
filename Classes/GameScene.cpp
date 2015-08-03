@@ -5,8 +5,9 @@
 #include "MapLayer.h"
 #include "SimpleAudioEngine.h"
 #include "Resource.h"
+#include "Player.h"
+#include "Define.h"
 USING_NS_CC;
-
 
 bool GameScene::init()
 {
@@ -14,10 +15,10 @@ bool GameScene::init()
 	{
 		return false;
 	}
-	
 	addMap();
 	addJoystick();
-
+	addButton();
+	this->setTag(GameScene_Tag);
 	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(Music_Bg1);
 	return true;
 }
@@ -38,8 +39,27 @@ void GameScene::addMap()
 
 void GameScene::addJoystick()
 {
-	auto pJsSprite = Sprite::create("cen.png");
-	auto pJsBg = Sprite::create("control_bg.png");
+	auto pJsSprite = Sprite::createWithSpriteFrameName("cen.png");
+	auto pJsBg = Sprite::createWithSpriteFrameName("control_bg.png");
 	auto pJoystick = Joystick::createJoystick(Vec2(100, VisibleRect::center().y), 70, pJsSprite, pJsBg, false);
 	this->addChild(pJoystick);
+}
+
+void GameScene::addButton()
+{
+	auto fireItem = MenuItemSprite::create(
+		Sprite::createWithSpriteFrameName("fire_button_default.png"),
+		Sprite::createWithSpriteFrameName("fire_button_press.png"),
+		CC_CALLBACK_0(GameScene::fire, this));
+
+	fireItem->setPosition(Vec2(VisibleRect::getVisibleRect().size.width - 100, VisibleRect::center().y));
+	auto menu = Menu::create(fireItem, nullptr);
+	menu->setPosition(Vec2::ZERO);
+	this->addChild(menu);
+}
+
+void GameScene::fire()
+{
+	auto player = static_cast<Player*>(getChildByTag(Player1_Tag));
+	player->fire();
 }

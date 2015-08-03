@@ -7,15 +7,16 @@ bool Player::init()
 	{
 		return false;
 	}
-
+	this->setTag(Player1_Tag);
 	this->initWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("player1_up_1.png"));
+	m_direction = stateUp;
 	createAnimation();
 
 	return true;
 }
 
 
-void Player::setAction(JoystickState state)
+void Player::setMoveState(JoystickState state)
 {
 	if (m_state == state)
 	{
@@ -29,6 +30,7 @@ void Player::setAction(JoystickState state)
 		break;
 	case stateUp:
 	{
+					m_direction = state;
 					this->stopAllActions();
 					auto animate = Animate::create(AnimationCache::getInstance()->getAnimation("p1_up"));
 					runAction(RepeatForever::create(animate));
@@ -36,6 +38,7 @@ void Player::setAction(JoystickState state)
 		break;
 	case stateDown:
 	{
+					  m_direction = state;
 					  this->stopAllActions();
 					  auto animate = Animate::create(AnimationCache::getInstance()->getAnimation("p1_down"));
 					  runAction(RepeatForever::create(animate));
@@ -43,6 +46,7 @@ void Player::setAction(JoystickState state)
 		break;
 	case stateLeft:
 	{
+					  m_direction = state;
 					  this->stopAllActions();
 					  auto animate = Animate::create(AnimationCache::getInstance()->getAnimation("p1_left"));
 					  runAction(RepeatForever::create(animate));
@@ -50,6 +54,7 @@ void Player::setAction(JoystickState state)
 		break;
 	case stateRight:
 	{
+					   m_direction = state;
 					   this->stopAllActions();
 					   auto animate = Animate::create(AnimationCache::getInstance()->getAnimation("p1_right"));
 					   runAction(RepeatForever::create(animate));
@@ -58,7 +63,7 @@ void Player::setAction(JoystickState state)
 	default:
 		break;
 	}
-
+	
 	m_state = state;
 }
 
@@ -101,4 +106,9 @@ void Player::createAnimation()
 	p1_right->setDelayPerUnit(0.4f / 4.0f);
 	p1_right->setRestoreOriginalFrame(true);
 	AnimationCache::getInstance()->addAnimation(p1_right, "p1_right");
+}
+
+void Player::fire()
+{
+	
 }
