@@ -13,7 +13,7 @@ public:
 protected:
 	JoystickState m_state; //虚拟摇杆动作
 	JoystickState m_direction; //角色方向
-	cocos2d::Sprite* m_muzzle; //炮口
+	cocos2d::Node* m_muzzle; //炮口
 protected:
 
 	void createAnimation();

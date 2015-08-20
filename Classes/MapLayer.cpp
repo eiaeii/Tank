@@ -13,7 +13,6 @@ bool MapLayer::init()
 	{
 		return false;
 	}
-	this->setTag(MapLayer_Tag);
 	m_pMap = TMXTiledMap::create(Map_Level1);
 	m_pBackground = m_pMap->getLayer("background");
 	m_fScale = VisibleRect::getVisibleRect().size.height / m_pMap->getContentSize().height;

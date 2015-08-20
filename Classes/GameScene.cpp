@@ -60,6 +60,5 @@ void GameScene::addButton()
 
 void GameScene::fire()
 {
-	auto player = static_cast<Player*>(getChildByTag(Player1_Tag));
-	player->fire();
+
 }
